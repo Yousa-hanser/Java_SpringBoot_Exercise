@@ -28,8 +28,8 @@ public class UserServiceTests {
     public void reg() {
         try {
             User user = new User();
-            user.setUsername("Furude Hanyuu");
-            user.setPassword("0801");
+            user.setUsername("Takamatsu Tomori");
+            user.setPassword("1122");
 
             userService.reg(user);
 

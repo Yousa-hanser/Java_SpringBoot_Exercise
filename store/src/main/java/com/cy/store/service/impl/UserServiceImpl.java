@@ -36,7 +36,9 @@ public class UserServiceImpl implements IUserService {
         String oldPassword = user.getPassword();
         // 获取盐值(随机生成一个盐值)
         String salt = UUID.randomUUID().toString().toUpperCase();
-        // 将密码和盐值作为一个整体进行加密处理
+        // 补全数据：盐值的记录
+        user.setSalt(salt);
+        // 将密码和盐值作为一个整体进行加密处理，忽略原有密码强度，提升了数据的安全性
         String md5Password = getMD5Password(oldPassword, salt);
         // 将加密之后的密码重新补全设置到user对象中
         user.setPassword(md5Password);
