@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 /* 用户模块业务层的实现类 */
+// @Service注解：将当前类的对象交给Spring来管理，自动创建对象以及对象的维护
 @Service
 public class UserServiceImpl implements IUserService {
     @Autowired
