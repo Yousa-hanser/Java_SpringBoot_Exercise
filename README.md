@@ -1,31 +1,23 @@
 # Java_SpringBoot_Exercise
 
-As a college student who wants to "lie flat" but has to study hard due to practical reasons, I will start from this project and gradually record my learning process.  
-This repository is used to practice Java SpringBoot-related technologies.
+开发日志请参看[docs\dev-log.md](docs\dev-log.md)
 
-## Development Log
+架构设计方法请参看[docs\arch-design.md](docs\arch-design.md)
 
-- 2026.3.4  
-After several hours of troubleshooting, the environment configuration issue was finally resolved.  
-The main problem lies in the "test/java/com/cy/store/StoreApplicationTests.java" file of the project.  
-When the following code was added to the file:
+本项目涉及到的技术栈如下
 
-```java
-@Autowired
-private DataSource dataSource;
-```
+## 后端
 
-It always prompts "Could not autowire. No beans of 'DataSource type found'". After trying various methods with GPT continuously, I accidentally discovered that if this statement
+### 核心框架
 
-```java
-private java.sql.SQLException.DataSource dataSource;
-```
+Java SpringBoot：项目核心框架，用于快速构建Java后端应用
 
-was used instead of the one mentioned earlier, there would be no error.  
-Although the exact reasons are not yet clear, the problem has finally been resolved and the front-end and back-end services can now operate normally.
+### 数据库相关
 
-- 2026.03.07
+- MySQL：作为后端对接的数据库
+- MyBatis：用于Java与MySQL数据库交互的持久层框架
 
-Recently, I have been gradually working on the logic function for user registration. The greatest gain was learning how to connect the MySQL database with the Java backend using MyBatis.  
-By the way, in order to manage the database more conveniently, I installed Navicat. This software was something I had heard about during my sophomore year of studying database. Unfortunately, I didn't actually use it at that time.  
-What I really want to say is that many things can only be truly understood when you do them yourself.
+### 开发 / 辅助工具
+
+- Maven：项目构建工具
+- Navicat：数据库可视化管理工具
