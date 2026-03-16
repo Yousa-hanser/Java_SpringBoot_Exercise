@@ -2,6 +2,7 @@ package com.cy.store.controller;
 
 import com.cy.store.service.ex.*;
 import com.cy.store.util.JsonResult;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /* 控制层类的基类 */
@@ -29,5 +30,23 @@ public class BaseController {
             result.setMessage("注册时产生未知的异常");
         }
         return result;
+    }
+
+    /**
+     * 获取session对象中的uid
+     * @param session session对象
+     * @return 当前登录的用户uid的值
+     */
+    protected final Integer getUidFromSession(HttpSession session) {
+        return Integer.valueOf(session.getAttribute("uid").toString());
+    }
+
+    /**
+     * 获取当前登录用户的username
+     * @param session session对象
+     * @return 当前登录用户的用户名
+     */
+    protected final String getUsernameFromSession(HttpSession session) {
+        return session.getAttribute("username").toString();
     }
 }
