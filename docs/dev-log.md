@@ -29,3 +29,7 @@ Although the exact reasons are not yet clear, the problem has finally been resol
 Recently, I have been gradually working on the logic function for user registration. The greatest gain was learning how to connect the MySQL database with the Java backend using MyBatis.  
 By the way, in order to manage the database more conveniently, I installed Navicat. This software was something I had heard about during my sophomore year of studying database. Unfortunately, I didn't actually use it at that time.  
 What I really want to say is that many things can only be truly understood when you do them yourself.
+
+- 2026.03.16
+
+After finishing the development of the user registration function in the controller layer, I spent some time adjusting the structure of the technical documentation and organizing the overall development ideas up to this point. I believe this is highly necessary because for a completely new tech stack, I need to constantly check whether I have truly mastered its development framework and processes.
