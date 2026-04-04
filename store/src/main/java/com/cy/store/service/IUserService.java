@@ -17,4 +17,13 @@ public interface IUserService {
      * @return 当前匹配的用户数据，如果没有则返回null值
      */
     User login(String username, String password);
+
+    /**
+     * 用户修改密码功能
+     * @param uid 用户uid
+     * @param username 执行修改操作的用户名（一般就是用户本身）
+     * @param oldPassword 旧密码
+     * @param newPassword 新密码
+     */
+    void changePassword(Integer uid, String username, String oldPassword, String newPassword);
 }

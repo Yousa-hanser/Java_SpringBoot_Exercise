@@ -28,6 +28,9 @@ public class BaseController {
         } else if (e instanceof InsertException) {
             result.setState(5000);
             result.setMessage("注册时产生未知的异常");
+        } else if (e instanceof UpdateException) {
+            result.setState(5001);
+            result.setMessage("更新密码时产生未知的异常");
         }
         return result;
     }

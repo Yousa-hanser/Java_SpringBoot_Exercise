@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
+
 // @SpringBootTest：表示标注当前的类是一个测试类，不会随同项目一块打包
 @SpringBootTest
 // @RunWith：表示启动这个单元测试类(否则单元测试类是不能够运行的)，需要传递一个参数，必须是SpringRunner的实例类型
@@ -36,5 +38,17 @@ public class UserMapperTests {
     public void findByUsername() {
         User user = userMapper.findByUsername("Hoshino Hinata");
         System.out.println(user);
+    }
+
+    @Test
+    public void findByUid() {
+        User user = userMapper.findByUid(1);
+        System.out.println(user);
+    }
+
+    @Test
+    public void updatePasswordByUid() {
+        Integer rows = userMapper.updatePasswordByUid(3, "1122", "administrator", new Date());
+        System.out.println(rows);
     }
 }

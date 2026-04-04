@@ -3,10 +3,7 @@ package com.cy.store.service.impl;
 import com.cy.store.entity.User;
 import com.cy.store.mapper.UserMapper;
 import com.cy.store.service.IUserService;
-import com.cy.store.service.ex.InsertException;
-import com.cy.store.service.ex.PasswordNotMatchException;
-import com.cy.store.service.ex.UserNotFoundException;
-import com.cy.store.service.ex.UsernameDuplicatedException;
+import com.cy.store.service.ex.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
@@ -92,6 +89,31 @@ public class UserServiceImpl implements IUserService {
         user.setAvatar(result.getAvatar());
         // 将当前的用户数据返回，返回的数据是为了辅助其他页面做数据展示使用(uid, username, avatar)
         return user;
+    }
+
+    @Override
+    public void changePassword(Integer uid, String username, String oldPassword, String newPassword) {
+        // 先检查uid合法性
+        User result = userMapper.findByUid(uid);
+        if (result == null) {
+            throw new UserNotFoundException("用户数据不存在");
+        }
+        // 检查用户是否被删除
+        if (result.getIsDelete() == 1) {
+            throw new UserNotFoundException("用户已被删除，请联系管理员");
+        }
+        // 检查旧密码是否准确
+        String calculatedPassword = getMD5Password(oldPassword, result.getSalt());
+        if (!calculatedPassword.equals(result.getPassword())) {
+            throw new PasswordNotMatchException("旧密码输入错误，请重试");
+        }
+        // 更新密码
+        String newCalculatedPassword = getMD5Password(newPassword, result.getSalt());
+        Integer rows = userMapper.updatePasswordByUid(uid, newCalculatedPassword, username, new Date());
+        // 检查是否更新成功
+        if (rows != 1) {
+            throw new UpdateException("更新密码时发生未知异常");
+        }
     }
 
     /* 定义一个md5算法的加密处理 */
