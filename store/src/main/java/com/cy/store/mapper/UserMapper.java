@@ -1,6 +1,7 @@
 package com.cy.store.mapper;
 
 import com.cy.store.entity.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.Date;
 
@@ -46,4 +47,19 @@ public interface UserMapper {
      * @return 受影响的行数
      */
     Integer updateInfoByUid(User user);
+
+    /**
+     * @Param("SQL映射文件中#{}占位符的变量名")，当SQL语句的占位符和映射的接口方法参数名不一致，
+     * 需要将某个参数强行注入到某个占位符变量上时，可以使用@Param注解来标注映射关系
+     * 根据uid修改用户头像
+     * @param uid 用户uid
+     * @param avatar 头像文件路径
+     * @param modifiedUser 修改人
+     * @param modifiedTime 修改时间
+     * @return 受影响的行数
+     */
+    Integer updateAvatarByUid(@Param("uid") Integer uid,
+                              @Param("avatar") String avatar,
+                              @Param("modifiedUser") String modifiedUser,
+                              @Param("modifiedTime") Date modifiedTime);
 }

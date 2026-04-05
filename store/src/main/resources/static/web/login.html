@@ -155,6 +155,8 @@
 							alert("登录成功");
 							// 跳转到系统主页index.html
 							// 相对路径来确定跳转的页面
+							// 将服务器返回的头像保存到cookie中
+							$.cookie("avatar", json.data.avatar, {expires: 1});
 							location.href = "index.html";
 						} else {
 							alert("登录失败");
